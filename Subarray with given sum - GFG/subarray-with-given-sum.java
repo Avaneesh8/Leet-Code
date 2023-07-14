@@ -41,61 +41,70 @@ class Solution
     //Function to find a continuous sub-array which adds up to a given number.
     static ArrayList<Integer> subarraySum(int[] arr, int n, int s) 
     {
-        
-        ArrayList<Integer> arrlist = new ArrayList<Integer>(3);
-        int start=0;
-        int sum=arr[0];
-        arrlist.add(-1);
-        for(int x=0;x<arr.length;)
+        ArrayList<Integer> g = new ArrayList<Integer>(2);
+        int a=0,b=0,sum=arr[0],flag=0;
+        while(a<=b+1)
         {
-            
-            if(sum==s)
+           
+            if(sum<s)
             {
-                if(start>x)
+                
+                /*if(arr[b]==s)
+                {
+                    g.add(a);
+                   g.add(a);
+                   return g;
+                }*/
+                b++;
+                if(b==arr.length)
                 {
                     break;
                 }
-                arrlist.remove(0);
-                arrlist.add(start+1);
-                arrlist.add(x+1);
-                //System.out.println("hi");
+                sum=sum+arr[b];
+                continue;
+                
+            }
+            else if(sum==s)
+            {
+                if(a>b)
+                {
+                    g.add(-1);
+                    return g;
+                }
+                flag++;
                 break;
             }
-            else if(sum<s)
+            else
             {
-                x++;
-                if(x==arr.length)
+                sum=sum-arr[a];
+                a++;
+                /*if(a>b)
                 {
-                    break;
-                }
-                sum+=arr[x];
-                //System.out.println(sum);
-                continue;
-            }
-            else if(sum>s)
-            {
-                sum-=arr[start];
-                /*if(sum<0)
-                {
-                    sum=0;
-                    x++;
-                    if(x==arr.length)
+                    if(arr[a]==s)
                     {
-                    break;
+                   g.add(a);
+                   g.add(a);
+                   return g;
                     }
-                    start++;
-                    continue;
                 }*/
                 
-                /*if(start==x)
-                {
-                    start=x;
-                    //x++;
-                    continue;
-                }*/
-                start++;
+                
             }
+            
         }
-        return arrlist;
+        
+        if(flag==1)
+        {
+        
+        g.add(a+1);
+        g.add(b+1);
+        return g;
+        }
+        
+        else
+        {
+            g.add(-1);
+            return g;
+        }
     }
 }
