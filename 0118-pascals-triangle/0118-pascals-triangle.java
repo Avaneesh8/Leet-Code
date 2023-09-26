@@ -1,21 +1,14 @@
 class Solution {
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> listar=new ArrayList<>();
+        List<Integer> first=new ArrayList<>();
+        first.add(1);
+        listar.add(first);
         if(numRows==1)
         {
-            List<Integer> first=new ArrayList<>();
-            first.add(1);
-            listar.add(first);
             return listar;
         }
-        List<Integer> first=new ArrayList<>();
-        List<Integer> second=new ArrayList<>();
-        first.add(1);
-        second.add(1);
-        second.add(1);
-        listar.add(first);
-        listar.add(second);
-        for(int x=2;x<numRows;x++)
+        for(int x=1;x<numRows;x++)
         {
             List<Integer> listarr=new ArrayList<>();
             List<Integer> innerList = listar.get(x-1);
