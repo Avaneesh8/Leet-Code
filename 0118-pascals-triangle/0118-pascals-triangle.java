@@ -21,6 +21,5 @@ class Solution {
             listar.add(listarr);
         }
         return listar;
-        
     }
 }
